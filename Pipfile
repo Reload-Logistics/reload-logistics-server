@@ -1,0 +1,35 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+pillow = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
+django-rest-passwordreset = "*"
+djangorestframework-simplejwt = "*"
+python-decouple = "*"
+uuid = "*"
+numpy = "*"
+gunicorn = "*"
+requests = "*"
+whitenoise = "*"
+psycopg2 = "*"
+django-cors-headers = "*"
+python-slugify = "*"
+setuptools = "*"
+dj-database-url = "*"
+cryptography = "==39.0.2"
+text-unidecode = "*"
+django-json-widget = "*"
+googlemaps = "==4.10.0"
+django-email = "*"
+docxtpl = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
