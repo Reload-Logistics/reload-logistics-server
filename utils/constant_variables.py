@@ -9,4 +9,4 @@ VEHICLESIZECHOICES = [(1.0, "1 Ton"), (1.5, "1.5 Ton"),
                       (2.0, "2 Ton"), (3.0, "3 Ton"), 
                       (8.0, "8 Ton")]
 
-website_url = "https://matols.co.za"
+website_url = "https://reloadlogistics.netlify.app"

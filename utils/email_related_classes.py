@@ -45,7 +45,7 @@ Balance Due: {self.booking.amount_due_customer}
  
 
 Kind regards
-Matols Logistics Services 
+Reload Logistics Services 
 Team
                 """
         return body
@@ -64,13 +64,13 @@ please do not hesitate to book with us again, we
 are alway here at your services.
 
 Kind regards 
-Matols Logistics Services
+Reload Logistics Services
 Team
 
 """
     @property
     def header(self):
-        return "Matols Logistics Services Invoice-{0}".format(self.booking.id)
+        return "Reload Logistics Services Invoice-{0}".format(self.booking.id)
     @property
     def cancelation_header(self):
         return "Booking Cancelation Invoice-{0}".format(self.booking.id)
@@ -171,11 +171,11 @@ class UserCustomer:
     
     @property
     def welcome_message_header(self):
-        return "MATOLS LOGISTICS SERVICES (Pty) Ltd"
+        return "RELOAD LOGISTICS SERVICES (Pty) Ltd"
     
     @property
     def password_reset_header(self):
-        return "MATOLS LOGISTICS SERVICES (Pty) Ltd PASSWORD RESET"
+        return "RELOAD LOGISTICS SERVICES (Pty) Ltd PASSWORD RESET"
     
     @property
     def recepient_list(self):
@@ -236,7 +236,7 @@ class UserContactUs:
 
     @property
     def header(self):
-        return "Matols Logistics Services"
+        return "Reload Logistics Services"
     @property
     def body(self):
         return f"""
@@ -246,7 +246,7 @@ Thank you for contacting us.
 One of our team members will respond to you shortly.
 
 Kind Regards
-Matols Logistics Services 
+Reload Logistics Services 
 Team
 
 """
@@ -272,20 +272,20 @@ Team
 
     @property
     def response_header(self):
-        return "Matols Logistics Services Question Response"
+        return "Reload Logistics Services Question Response"
 
     @property
     def response_body(self):
         return f"""
 Dear {self.user_full_name}
 
-Thank you for enquering with Matols Logistics Services.
+Thank you for enquering with Reload Logistics Services.
 
 Your Question: {self.instance.message}
 Answer: {self.instance.message_response}
 
 Kind Regards
-Matols Logistics Services 
+Reload Logistics Services 
 Team
 
 """
