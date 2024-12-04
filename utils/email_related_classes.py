@@ -79,7 +79,7 @@ Team
         return {
             "id": self.booking.id,
             "user_email": self.booking.customer.email, 
-            "logo": InlineImage(doc, "templates/src/invoice-logo.png", width=Mm(27.686), height=Mm(22.86)),
+            "logo": InlineImage(doc, "templates/src/invoice-logo.jpg", width=Mm(27.686), height=Mm(22.86)),
             "customer_full_name": self.customer_full_name,
             "user_contact_number": self.booking.customer.user_contact_number,
             "created_at": self.booking.created_at,
