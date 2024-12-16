@@ -45,7 +45,11 @@ class ComputeQuote:
     def _generate_loyal_customer_discount(self) -> float:
 
         # find the user
-        if(isinstance(self.user, User)): 
+        if(isinstance(self.user, User)):
+                
+                # check if staff or driver 
+                if(self.user.is_driver or self.user.is_staff):
+                     return 0.0
                 # get the bookings 
                 customer_bookings = Booking.objects.\
                                             filter(customer = self.user)
