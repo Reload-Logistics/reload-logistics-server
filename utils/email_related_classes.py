@@ -7,6 +7,8 @@ import io
 from docxtpl import DocxTemplate, InlineImage
 from .constant_variables import website_url
 from docx.shared import Mm
+from utils.api_exceptions import CustomAPIException
+from rest_framework import status
 
 
 class Invoice:
@@ -125,7 +127,8 @@ Team
             email.fail_silently = True
             email.send()
         except Exception as e:             
-            print(str(e))
+            # print(str(e))
+            raise CustomAPIException(detail=str(e), code=status.HTTP_400_BAD_REQUEST)
 
     
     def send_feedback_email(self):
@@ -152,8 +155,8 @@ Team
                 email.send()
                 return True
             except Exception as e: 
-                print(str(e))
-                return True
+                # print(str(e))
+                raise CustomAPIException(detail=str(e), code=status.HTTP_400_BAD_REQUEST)
             
         return False 
         
@@ -210,7 +213,8 @@ class UserCustomer:
             email.fail_silently = True
             email.send()
         except Exception as e:
-            print(str(e))
+            # print(str(e))
+            raise CustomAPIException(detail=str(e), code=status.HTTP_400_BAD_REQUEST)
 
     def send_password_reset_email(self):
         if(settings.DEBUG): return 
@@ -232,7 +236,8 @@ class UserCustomer:
             email.fail_silently = True
             email.send()
         except Exception as e:
-            print(str(e))
+            # print(str(e))
+            raise CustomAPIException(detail=str(e), code=status.HTTP_400_BAD_REQUEST)
 
         
 
@@ -284,7 +289,8 @@ Team
             email.fail_silently = True
             email.send()
         except Exception as e:
-            print(str(e))
+            # print(str(e))
+            raise CustomAPIException(detail=str(e), code=status.HTTP_400_BAD_REQUEST)
     
 
 
@@ -330,8 +336,8 @@ Team
                 email.send()
                 return True
             except Exception as e:
-                print(e)
-                return True
+                # print(str(e))
+                raise CustomAPIException(detail=str(e), code=status.HTTP_400_BAD_REQUEST)
 
         return False 
         
