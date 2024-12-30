@@ -113,16 +113,20 @@ Team
         doc.save(docx_io)
         docx_io.seek(0)
 
-        email = EmailMultiAlternatives(
-            self.header,
-            self.get_body,
-            settings.EMAIL_HOST_USER,
-            self.recipient_list,
-            [settings.EMAIL_HOST_USER]
-        )
-        email.attach('invoice.docx',  docx_io.read(), 'application/docx')
-        email.fail_silently = True
-        email.send()
+        try:
+            email = EmailMultiAlternatives(
+                    self.header,
+                    self.get_body,
+                    settings.EMAIL_HOST_USER,
+                    self.recipient_list,
+                    [settings.EMAIL_HOST_USER]
+                    )
+            email.attach('invoice.docx',  docx_io.read(), 'application/docx')
+            email.fail_silently = True
+            email.send()
+        except Exception as e:             
+            print(str(e))
+
     
     def send_feedback_email(self):
         pass
@@ -134,19 +138,23 @@ Team
         
         if(self.booking.booking_cancelation_email_sent == False and 
             self.booking.booking_canceled):
-            email = EmailMultiAlternatives(
+            try:
+                email = EmailMultiAlternatives(
                 self.cancelation_header,
                 self.cancelation_body,
                 settings.EMAIL_HOST_USER,
                 self.recipient_list,
                 [settings.EMAIL_HOST_USER]
-            )
+                )
 
-            # email.attach('invoice.docx',  docx_io.read(), 'application/docx')
-            email.fail_silently = True
-            email.send()
-
-            return True
+                # email.attach('invoice.docx',  docx_io.read(), 'application/docx')
+                email.fail_silently = True
+                email.send()
+                return True
+            except Exception as e: 
+                print(str(e))
+                return True
+            
         return False 
         
 
@@ -188,18 +196,21 @@ class UserCustomer:
         html = render_to_string("new_user.html", self.context)
         text_content = strip_tags(html)
 
-        #.. send email 
-        email = EmailMultiAlternatives(
-                    self.welcome_message_header,
-                    text_content, 
-                    settings.EMAIL_HOST_USER,
-                    self.recepient_list,
-                    [settings.EMAIL_HOST_USER]
-                )
-        
-        email.attach_alternative(html, "text/html")  
-        email.fail_silently = True
-        email.send()
+        try:
+            #.. send email 
+            email = EmailMultiAlternatives(
+                        self.welcome_message_header,
+                        text_content, 
+                        settings.EMAIL_HOST_USER,
+                        self.recepient_list,
+                        [settings.EMAIL_HOST_USER]
+                    )
+            
+            email.attach_alternative(html, "text/html")  
+            email.fail_silently = True
+            email.send()
+        except Exception as e:
+            print(str(e))
 
     def send_password_reset_email(self):
         if(settings.DEBUG): return 
@@ -207,19 +218,21 @@ class UserCustomer:
         html = render_to_string("password_reset.html", self.password_reset_context)
         text_content = strip_tags(html)
 
-               #.. send email 
-        email = EmailMultiAlternatives(
-                    self.password_reset_header,
-                    text_content, 
-                    settings.EMAIL_HOST_USER,
-                    self.recepient_list,
-                    [settings.EMAIL_HOST_USER]
-                )
-        
-        email.attach_alternative(html, "text/html")  
-        email.fail_silently = True
-        email.send()
-        
+        try:
+                           #.. send email 
+            email = EmailMultiAlternatives(
+                        self.password_reset_header,
+                        text_content, 
+                        settings.EMAIL_HOST_USER,
+                        self.recepient_list,
+                        [settings.EMAIL_HOST_USER]
+                    )
+            
+            email.attach_alternative(html, "text/html")  
+            email.fail_silently = True
+            email.send()
+        except Exception as e:
+            print(str(e))
 
         
 
@@ -257,17 +270,22 @@ Team
     def send_thank_you_email(self):
 
         if(settings.DEBUG): return 
-             #.. send email 
-        email = EmailMultiAlternatives(
-                    self.header,
-                    self.body, 
-                    settings.EMAIL_HOST_USER,
-                    self.recepient_list,
-                    [settings.EMAIL_HOST_USER]
-                )
-        
-        email.fail_silently = True
-        email.send()
+
+        try:
+            #.. send email 
+            email = EmailMultiAlternatives(
+                        self.header,
+                        self.body, 
+                        settings.EMAIL_HOST_USER,
+                        self.recepient_list,
+                        [settings.EMAIL_HOST_USER]
+                    )
+            
+            email.fail_silently = True
+            email.send()
+        except Exception as e:
+            print(str(e))
+    
 
 
     @property
@@ -297,19 +315,24 @@ Team
         if(self.instance.respond and 
             len(list(str(self.instance.message_response))) > 0 and 
                 self.instance.responded == False):
-            #.. send email 
-            email = EmailMultiAlternatives(
-                        self.response_header,
-                        self.response_body, 
-                        settings.EMAIL_HOST_USER,
-                        self.recepient_list,
-                        [settings.EMAIL_HOST_USER]
-                    )
             
-            email.fail_silently = True
-            email.send()
+            try: 
+                        #.. send email 
+                email = EmailMultiAlternatives(
+                            self.response_header,
+                            self.response_body, 
+                            settings.EMAIL_HOST_USER,
+                            self.recepient_list,
+                            [settings.EMAIL_HOST_USER]
+                        )
+                
+                email.fail_silently = True
+                email.send()
+                return True
+            except Exception as e:
+                print(e)
+                return True
 
-            return True
         return False 
         
             

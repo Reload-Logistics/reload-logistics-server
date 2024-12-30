@@ -86,6 +86,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 if(DEBUG):
     DATABASES = {
         "default": {
@@ -221,5 +222,7 @@ EMAIL_PORT = config("EMAIL_PORT", cast=str, default="465")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", cast=str)
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", cast=str)
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", cast=str)
+
 #EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool, default=True)
 EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool, default=False)
